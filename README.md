@@ -37,6 +37,11 @@ sent to the instance URL you configure.
 - Interface available in English and Spanish, independent of the
   browser's own language
 
+## Screenshots
+
+<img src="docs/screenshots/popup.png" alt="Popup: save form with title, description, tags, lists, and visibility, over the LinkAce homepage" width="480" />
+<img src="docs/screenshots/options.png" alt="Settings page: instance URL, API token, and language" width="480" />
+
 ## Requirements
 
 **Your LinkAce instance must be served over HTTPS.** This isn't optional
