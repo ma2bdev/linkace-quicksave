@@ -4,6 +4,10 @@ A Firefox extension to save the current tab to your self-hosted
 [LinkAce](https://www.linkace.org/) instance in one click — pick tags and
 lists without leaving the page, no bookmarks toolbar needed.
 
+<p align="center">
+  <img src="docs/screenshots/MainPage.png" alt="LinkAce Quick Save popup, open over the LinkAce homepage" width="720" />
+</p>
+
 ## Status
 
 Core save flow works end to end: popup, options, and REST API client are
@@ -39,7 +43,6 @@ sent to the instance URL you configure.
 
 ## Screenshots
 
-<img src="docs/screenshots/popup.png" alt="Popup: save form with title, description, tags, lists, and visibility, over the LinkAce homepage" width="480" />
 <img src="docs/screenshots/options.png" alt="Settings page: instance URL, API token, and language" width="480" />
 
 ## Requirements
