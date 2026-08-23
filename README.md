@@ -43,6 +43,7 @@ sent to the instance URL you configure.
 
 ## Screenshots
 
+<img src="docs/screenshots/MainPage.png" alt="Popup: save form with title, description, tags, lists, and visibility, over the LinkAce homepage" width="480" />
 <img src="docs/screenshots/options.png" alt="Settings page: instance URL, API token, and language" width="480" />
 
 ## Requirements
