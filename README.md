@@ -43,8 +43,12 @@ sent to the instance URL you configure.
 
 ## Screenshots
 
-<img src="docs/screenshots/popup.png" alt="Popup: save form with title, description, tags, lists, and visibility" width="320" />
-<img src="docs/screenshots/options.png" alt="Settings page: instance URL, API token, and language" width="480" />
+<table>
+<tr>
+<td><img src="docs/screenshots/popup.png" alt="Popup: save form with title, description, tags, lists, and visibility" width="320" /></td>
+<td><img src="docs/screenshots/options.png" alt="Settings page: instance URL, API token, and language" width="380" /></td>
+</tr>
+</table>
 
 ## Requirements
 
