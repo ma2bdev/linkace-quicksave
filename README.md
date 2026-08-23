@@ -21,11 +21,21 @@ sent to the instance URL you configure.
 
 ## Features
 
-- Save the current tab to LinkAce via its REST API (`/api/v2/links`)
-- Assign existing tags and lists at save time
-- Keyboard shortcut (`Alt+Shift+L` by default)
+- Save the current tab to LinkAce via its REST API (`/api/v2/links`),
+  with a keyboard shortcut (`Alt+Shift+L` by default)
+- Title and description are pre-filled automatically — description comes
+  from the page's own `<meta name="description">` (or `og:description`)
+- Assign existing tags and lists at save time, picked from an
+  autocomplete dropdown that only loads from the API once you focus the
+  field, not on every popup open
+- **Duplicate detection:** if the current page is already saved, the
+  popup tells you and links straight to the existing entry
+- **Update in place:** saving an already-saved URL pre-fills its current
+  title, description, tags, lists, and visibility, and switches to
+  updating that link (`PATCH`) instead of creating a duplicate
 - Settings page for instance URL, API token, and language
-- Interface available in English and Spanish
+- Interface available in English and Spanish, independent of the
+  browser's own language
 
 ## Requirements
 
