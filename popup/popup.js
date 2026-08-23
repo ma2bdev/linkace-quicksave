@@ -1,14 +1,3 @@
-const ICONS = {
-  warning:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-  lock:
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-  save:
-    '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/>',
-  update:
-    '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/>',
-};
-
 function parseList(value) {
   return value
     .split(",")
@@ -16,8 +5,32 @@ function parseList(value) {
     .filter(Boolean);
 }
 
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Sets an icon by cloning a <template> instead of assigning innerHTML —
+// avoids "unsafe innerHTML assignment" lint warnings even though the
+// source here is always our own static markup, never user data.
+function setIcon(container, templateId) {
+  const tpl = document.getElementById(templateId);
+  container.replaceChildren(tpl.content.cloneNode(true));
+}
+
+function renderSuggestionItems(list, items) {
+  list.replaceChildren();
+  items.slice(0, 20).forEach((item) => {
+    const li = document.createElement("li");
+    li.dataset.value = item;
+    li.textContent = item;
+    list.appendChild(li);
+  });
+  list.hidden = false;
+}
+
+function renderSuggestionsMessage(list, message) {
+  list.replaceChildren();
+  const li = document.createElement("li");
+  li.className = "suggestions-empty";
+  li.textContent = message;
+  list.appendChild(li);
+  list.hidden = false;
 }
 
 // Fetches suggestions lazily (on first focus, not on popup load) and
@@ -35,13 +48,11 @@ function setupAutocomplete(input, list, loader, messages) {
     if (items === null) return;
     const query = currentQuery();
     const filtered = query ? items.filter((item) => item.toLowerCase().includes(query)) : items;
-    list.innerHTML = filtered.length
-      ? filtered
-          .slice(0, 20)
-          .map((item) => `<li data-value="${escapeHtml(item)}">${escapeHtml(item)}</li>`)
-          .join("")
-      : `<li class="suggestions-empty">${escapeHtml(t(messages, "popupNoSuggestions"))}</li>`;
-    list.hidden = false;
+    if (filtered.length) {
+      renderSuggestionItems(list, filtered);
+    } else {
+      renderSuggestionsMessage(list, t(messages, "popupNoSuggestions"));
+    }
   }
 
   async function ensureLoaded() {
@@ -49,13 +60,12 @@ function setupAutocomplete(input, list, loader, messages) {
       render();
       return;
     }
-    list.innerHTML = `<li class="suggestions-empty">${escapeHtml(t(messages, "popupLoadingSuggestions"))}</li>`;
-    list.hidden = false;
+    renderSuggestionsMessage(list, t(messages, "popupLoadingSuggestions"));
     try {
       items = await loader();
     } catch (err) {
       items = [];
-      list.innerHTML = `<li class="suggestions-empty">${escapeHtml(t(messages, "popupError", { ERROR: err.message }))}</li>`;
+      renderSuggestionsMessage(list, t(messages, "popupError", { ERROR: err.message }));
       return;
     }
     render();
@@ -85,6 +95,18 @@ function setupAutocomplete(input, list, loader, messages) {
   });
 }
 
+function renderDuplicateWarning(container, message, viewUrl, linkText) {
+  container.replaceChildren();
+  container.append(`${message} `);
+  const a = document.createElement("a");
+  a.href = viewUrl;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.textContent = linkText;
+  container.appendChild(a);
+  container.hidden = false;
+}
+
 async function main() {
   const { messages } = await applyI18n(document);
 
@@ -107,6 +129,8 @@ async function main() {
   const saveBtnLabel = document.getElementById("save-btn-label");
   const status = document.getElementById("status");
 
+  setIcon(saveBtnIcon, "tpl-icon-save");
+
   // Opening a native permission prompt from this small popup panel can
   // make Firefox drop focus from the popup and close it before the
   // request resolves. Settings is a full tab, so permission requests are
@@ -119,7 +143,7 @@ async function main() {
   const config = await getConfig();
   if (!config.instanceUrl || !config.apiToken) {
     noticeText.textContent = t(messages, "popupNotConfigured");
-    noticeIcon.innerHTML = ICONS.warning;
+    setIcon(noticeIcon, "tpl-icon-warning");
     notice.className = "notice-warning";
     notice.hidden = false;
     return;
@@ -129,7 +153,7 @@ async function main() {
   const hasAccess = await browser.permissions.contains({ origins: [pattern] });
   if (!hasAccess) {
     noticeText.textContent = t(messages, "popupGrantAccess");
-    noticeIcon.innerHTML = ICONS.lock;
+    setIcon(noticeIcon, "tpl-icon-lock");
     notice.className = "notice-info";
     notice.hidden = false;
     return;
@@ -166,7 +190,7 @@ async function main() {
   function setUpdateMode(id) {
     existingLinkId = id;
     saveBtnLabel.textContent = t(messages, id ? "popupUpdateBtn" : "popupSaveBtn");
-    saveBtnIcon.innerHTML = id ? ICONS.update : ICONS.save;
+    setIcon(saveBtnIcon, id ? "tpl-icon-update" : "tpl-icon-save");
   }
 
   let duplicateCheckToken = 0;
@@ -192,8 +216,7 @@ async function main() {
     }
 
     const viewUrl = `${config.instanceUrl}/links/${existing.id}`;
-    duplicateWarning.innerHTML = `${escapeHtml(t(messages, "popupDuplicateWarning"))} <a href="${escapeHtml(viewUrl)}" target="_blank" rel="noopener">${escapeHtml(t(messages, "popupViewLink"))}</a>`;
-    duplicateWarning.hidden = false;
+    renderDuplicateWarning(duplicateWarning, t(messages, "popupDuplicateWarning"), viewUrl, t(messages, "popupViewLink"));
     setUpdateMode(existing.id);
 
     if (!prefill) return;
