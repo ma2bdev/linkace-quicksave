@@ -59,7 +59,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   font: inherit;
   padding: 0.4rem 0.55rem;
   border: 1px solid var(--border);
@@ -67,6 +68,55 @@ textarea {
   background: var(--bg);
   color: var(--fg);
   resize: vertical;
+}
+
+.autocomplete {
+  position: relative;
+}
+
+.autocomplete input {
+  width: 100%;
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  max-height: 9rem;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font: inherit;
+}
+
+.suggestions li {
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.suggestions li:hover,
+.suggestions li.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.suggestions li.suggestions-empty {
+  color: var(--muted);
+  cursor: default;
+}
+
+.suggestions li.suggestions-empty:hover {
+  background: none;
+  color: var(--muted);
 }
 
 button {
@@ -124,6 +174,20 @@ button {
 #notice.notice-info #notice-btn {
   background: var(--accent);
   border-color: var(--accent);
+}
+
+#duplicate-warning {
+  margin: -0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--warning-fg);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+#duplicate-warning a {
+  color: inherit;
+  font-weight: 600;
 }
 
 #status {

@@ -18,6 +18,7 @@
         <span data-i18n="popupUrlLabel">URL</span>
         <input id="url" type="url" required autocomplete="off" />
       </label>
+      <p id="duplicate-warning" hidden></p>
 
       <label for="title">
         <span data-i18n="popupTitleLabel">Title</span>
@@ -31,14 +32,27 @@
 
       <label for="tags">
         <span data-i18n="popupTagsLabel">Tags</span>
-        <input id="tags" type="text" list="tags-list" data-i18n-placeholder="popupTagsPlaceholder" autocomplete="off" />
-        <datalist id="tags-list"></datalist>
+        <div class="autocomplete">
+          <input id="tags" type="text" data-i18n-placeholder="popupTagsPlaceholder" autocomplete="off" />
+          <ul id="tags-suggestions" class="suggestions" hidden></ul>
+        </div>
       </label>
 
       <label for="lists">
         <span data-i18n="popupListsLabel">Lists</span>
-        <input id="lists" type="text" list="lists-list" data-i18n-placeholder="popupListsPlaceholder" autocomplete="off" />
-        <datalist id="lists-list"></datalist>
+        <div class="autocomplete">
+          <input id="lists" type="text" data-i18n-placeholder="popupListsPlaceholder" autocomplete="off" />
+          <ul id="lists-suggestions" class="suggestions" hidden></ul>
+        </div>
+      </label>
+
+      <label for="visibility">
+        <span data-i18n="popupVisibilityLabel">Visibility</span>
+        <select id="visibility">
+          <option value="1" data-i18n="popupVisibilityPublic">Public</option>
+          <option value="2" data-i18n="popupVisibilityInternal">Internal</option>
+          <option value="3" data-i18n="popupVisibilityPrivate">Private</option>
+        </select>
       </label>
 
       <button type="submit" id="save-btn" data-i18n="popupSaveBtn">Save to LinkAce</button>

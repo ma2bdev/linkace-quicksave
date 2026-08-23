@@ -12,6 +12,75 @@ function parseList(value) {
     .filter(Boolean);
 }
 
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// Fetches suggestions lazily (on first focus, not on popup load) and
+// renders them in a custom dropdown that inherits the form's own styles,
+// since a native <datalist> can't be restyled to match.
+function setupAutocomplete(input, list, loader, messages) {
+  let items = null;
+
+  function currentQuery() {
+    const raw = input.value;
+    return raw.slice(raw.lastIndexOf(",") + 1).trim().toLowerCase();
+  }
+
+  function render() {
+    if (items === null) return;
+    const query = currentQuery();
+    const filtered = query ? items.filter((item) => item.toLowerCase().includes(query)) : items;
+    list.innerHTML = filtered.length
+      ? filtered
+          .slice(0, 20)
+          .map((item) => `<li data-value="${escapeHtml(item)}">${escapeHtml(item)}</li>`)
+          .join("")
+      : `<li class="suggestions-empty">${escapeHtml(t(messages, "popupNoSuggestions"))}</li>`;
+    list.hidden = false;
+  }
+
+  async function ensureLoaded() {
+    if (items !== null) {
+      render();
+      return;
+    }
+    list.innerHTML = `<li class="suggestions-empty">${escapeHtml(t(messages, "popupLoadingSuggestions"))}</li>`;
+    list.hidden = false;
+    try {
+      items = await loader();
+    } catch (err) {
+      items = [];
+      list.innerHTML = `<li class="suggestions-empty">${escapeHtml(t(messages, "popupError", { ERROR: err.message }))}</li>`;
+      return;
+    }
+    render();
+  }
+
+  input.addEventListener("focus", ensureLoaded);
+  input.addEventListener("input", render);
+  input.addEventListener("blur", () => {
+    setTimeout(() => {
+      list.hidden = true;
+    }, 150);
+  });
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") list.hidden = true;
+  });
+
+  list.addEventListener("mousedown", (event) => {
+    const li = event.target.closest("li[data-value]");
+    if (!li) return;
+    event.preventDefault();
+    const raw = input.value;
+    const lastComma = raw.lastIndexOf(",");
+    const before = lastComma >= 0 ? `${raw.slice(0, lastComma + 1)} ` : "";
+    input.value = `${before}${li.dataset.value}, `;
+    list.hidden = true;
+    input.focus();
+  });
+}
+
 async function main() {
   const { messages } = await applyI18n(document);
 
@@ -25,8 +94,10 @@ async function main() {
   const descriptionInput = document.getElementById("description");
   const tagsInput = document.getElementById("tags");
   const listsInput = document.getElementById("lists");
-  const tagsList = document.getElementById("tags-list");
-  const listsList = document.getElementById("lists-list");
+  const tagsSuggestions = document.getElementById("tags-suggestions");
+  const listsSuggestions = document.getElementById("lists-suggestions");
+  const visibilitySelect = document.getElementById("visibility");
+  const duplicateWarning = document.getElementById("duplicate-warning");
   const saveBtn = document.getElementById("save-btn");
   const status = document.getElementById("status");
 
@@ -64,20 +135,39 @@ async function main() {
   urlInput.value = tab.url || "";
   titleInput.value = tab.title || "";
 
-  status.textContent = t(messages, "popupLoadingLists");
-  status.className = "";
-  try {
-    const [tags, lists] = await Promise.all([
-      fetchAllTags(config.instanceUrl, config.apiToken),
-      fetchAllLists(config.instanceUrl, config.apiToken),
-    ]);
-    tagsList.innerHTML = tags.map((tag) => `<option value="${tag}"></option>`).join("");
-    listsList.innerHTML = lists.map((list) => `<option value="${list}"></option>`).join("");
-    status.textContent = "";
-  } catch (err) {
-    status.textContent = t(messages, "popupError", { ERROR: err.message });
-    status.className = "status-error";
+  setupAutocomplete(tagsInput, tagsSuggestions, () => fetchAllTags(config.instanceUrl, config.apiToken), messages);
+  setupAutocomplete(listsInput, listsSuggestions, () => fetchAllLists(config.instanceUrl, config.apiToken), messages);
+
+  let duplicateCheckToken = 0;
+  async function checkDuplicate() {
+    const url = urlInput.value.trim();
+    const token = ++duplicateCheckToken;
+    if (!url) {
+      duplicateWarning.hidden = true;
+      return;
+    }
+    let existing;
+    try {
+      existing = await findLinkByUrl(config.instanceUrl, config.apiToken, url);
+    } catch {
+      return; // silent — this is a best-effort check, not the source of truth
+    }
+    if (token !== duplicateCheckToken) return; // a newer check superseded this one
+    if (existing) {
+      const viewUrl = `${config.instanceUrl}/links/${existing.id}`;
+      duplicateWarning.innerHTML = `${escapeHtml(t(messages, "popupDuplicateWarning"))} <a href="${escapeHtml(viewUrl)}" target="_blank" rel="noopener">${escapeHtml(t(messages, "popupViewLink"))}</a>`;
+      duplicateWarning.hidden = false;
+    } else {
+      duplicateWarning.hidden = true;
+    }
   }
+
+  let duplicateCheckTimer;
+  urlInput.addEventListener("input", () => {
+    clearTimeout(duplicateCheckTimer);
+    duplicateCheckTimer = setTimeout(checkDuplicate, 400);
+  });
+  checkDuplicate();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -91,6 +181,7 @@ async function main() {
         description: descriptionInput.value,
         tags: parseList(tagsInput.value),
         lists: parseList(listsInput.value),
+        visibility: Number(visibilitySelect.value),
       });
       status.textContent = t(messages, "popupSaved");
       status.className = "status-success";

@@ -152,5 +152,37 @@
   "popupLoadingLists": {
     "message": "Cargando tags y listas…",
     "description": "Estado del popup mientras se cargan tags y listas"
+  },
+  "popupVisibilityLabel": {
+    "message": "Visibilidad",
+    "description": "Etiqueta del campo de visibilidad del link"
+  },
+  "popupVisibilityPublic": {
+    "message": "Pública",
+    "description": "Opción de visibilidad: visible para cualquiera, incluidos invitados si está habilitado"
+  },
+  "popupVisibilityInternal": {
+    "message": "Interna",
+    "description": "Opción de visibilidad: visible solo para usuarios con sesión iniciada"
+  },
+  "popupVisibilityPrivate": {
+    "message": "Privada",
+    "description": "Opción de visibilidad: visible solo para el propietario"
+  },
+  "popupLoadingSuggestions": {
+    "message": "Cargando…",
+    "description": "Texto en el desplegable de sugerencias de tags/listas mientras carga"
+  },
+  "popupNoSuggestions": {
+    "message": "Sin coincidencias",
+    "description": "Texto en el desplegable de sugerencias de tags/listas cuando no hay coincidencias"
+  },
+  "popupDuplicateWarning": {
+    "message": "Ya está guardado en LinkAce.",
+    "description": "Aviso mostrado cuando la URL actual ya existe en LinkAce"
+  },
+  "popupViewLink": {
+    "message": "Ver enlace",
+    "description": "Enlace para abrir el link duplicado existente en LinkAce"
   }
 }
