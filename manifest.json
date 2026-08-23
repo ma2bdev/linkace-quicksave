@@ -37,7 +37,7 @@
     "open_in_tab": true
   },
 
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "scripting"],
   "optional_host_permissions": ["*://*/*"],
 
   "commands": {

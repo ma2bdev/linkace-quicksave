@@ -184,5 +184,17 @@
   "popupViewLink": {
     "message": "Ver enlace",
     "description": "Enlace para abrir el link duplicado existente en LinkAce"
+  },
+  "popupUpdateBtn": {
+    "message": "Actualizar en LinkAce",
+    "description": "Etiqueta del botón cuando la URL ya existe y se actualizará en vez de crearse"
+  },
+  "popupUpdating": {
+    "message": "Actualizando…",
+    "description": "Estado del popup mientras se actualiza un link existente"
+  },
+  "popupUpdated": {
+    "message": "¡Actualizado!",
+    "description": "Estado del popup tras actualizar con éxito un link existente"
   }
 }

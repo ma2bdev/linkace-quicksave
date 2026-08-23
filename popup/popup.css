@@ -128,6 +128,16 @@ button {
   color: #fff;
   font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+button svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 #notice {

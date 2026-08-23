@@ -184,5 +184,17 @@
   "popupViewLink": {
     "message": "View link",
     "description": "Link to open the existing duplicate link in LinkAce"
+  },
+  "popupUpdateBtn": {
+    "message": "Update in LinkAce",
+    "description": "Save button label when the URL already exists and will be updated instead of created"
+  },
+  "popupUpdating": {
+    "message": "Updating…",
+    "description": "Popup status while updating an existing link"
+  },
+  "popupUpdated": {
+    "message": "Updated!",
+    "description": "Popup status after successfully updating an existing link"
   }
 }
