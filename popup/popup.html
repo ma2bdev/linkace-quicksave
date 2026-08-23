@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n="extName">LinkAce Quick Save</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main>
+    <div id="notice" hidden>
+      <span id="notice-icon" aria-hidden="true"></span>
+      <p id="notice-text"></p>
+      <button type="button" id="notice-btn" data-i18n="popupOpenSettings">Open settings</button>
+    </div>
+
+    <form id="save-form" hidden>
+      <label for="url">
+        <span data-i18n="popupUrlLabel">URL</span>
+        <input id="url" type="url" required autocomplete="off" />
+      </label>
+
+      <label for="title">
+        <span data-i18n="popupTitleLabel">Title</span>
+        <input id="title" type="text" autocomplete="off" />
+      </label>
+
+      <label for="description">
+        <span data-i18n="popupDescriptionLabel">Description</span>
+        <textarea id="description" rows="2"></textarea>
+      </label>
+
+      <label for="tags">
+        <span data-i18n="popupTagsLabel">Tags</span>
+        <input id="tags" type="text" list="tags-list" data-i18n-placeholder="popupTagsPlaceholder" autocomplete="off" />
+        <datalist id="tags-list"></datalist>
+      </label>
+
+      <label for="lists">
+        <span data-i18n="popupListsLabel">Lists</span>
+        <input id="lists" type="text" list="lists-list" data-i18n-placeholder="popupListsPlaceholder" autocomplete="off" />
+        <datalist id="lists-list"></datalist>
+      </label>
+
+      <button type="submit" id="save-btn" data-i18n="popupSaveBtn">Save to LinkAce</button>
+
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script src="../lib/i18n.js"></script>
+  <script src="../lib/api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

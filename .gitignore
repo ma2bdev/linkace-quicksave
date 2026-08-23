@@ -1,0 +1,28 @@
+# Dependencies / build tooling
+node_modules/
+dist/
+build/
+
+# Packaged extension artifacts
+*.xpi
+*.zip
+web-ext-artifacts/
+
+# Local config / secrets (never commit real tokens or instance URLs)
+.env
+.env.*
+*.local.json
+*.key
+*.crt
+*.pem
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Logs
+npm-debug.log*
+*.log

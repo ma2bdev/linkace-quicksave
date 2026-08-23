@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n="optionsPageTitle">LinkAce Quick Save — Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <img src="../icons/icon48.png" alt="" width="32" height="32" />
+      <h1 data-i18n="optionsHeading">LinkAce Quick Save</h1>
+    </header>
+
+    <form id="config-form">
+      <label for="instance-url">
+        <span data-i18n="instanceUrlLabel">Your LinkAce instance URL</span>
+        <input
+          id="instance-url"
+          type="url"
+          data-i18n-placeholder="instanceUrlPlaceholder"
+          required
+          autocomplete="off"
+        />
+      </label>
+
+      <label for="api-token">
+        <span data-i18n="apiTokenLabel">API Token</span>
+        <input
+          id="api-token"
+          type="password"
+          data-i18n-placeholder="apiTokenPlaceholder"
+          required
+          autocomplete="off"
+        />
+        <button type="button" id="toggle-token" class="link-btn" data-i18n="toggleTokenShow">Show</button>
+      </label>
+
+      <label for="language-select">
+        <span data-i18n="languageLabel">Language</span>
+        <select id="language-select">
+          <option value="auto" data-i18n="languageAuto">Match browser</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="test-btn" class="secondary" data-i18n="testConnectionBtn">Test connection</button>
+        <button type="submit" id="save-btn" data-i18n="saveBtn">Save</button>
+      </div>
+
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <footer>
+      <p data-i18n="footerNote">
+        Your token never leaves your browser except to talk directly to your own LinkAce instance.
+      </p>
+    </footer>
+  </main>
+
+  <script src="../lib/i18n.js"></script>
+  <script src="../lib/api.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

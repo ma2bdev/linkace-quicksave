@@ -1,0 +1,156 @@
+{
+  "extName": {
+    "message": "LinkAce Quick Save",
+    "description": "Extension name shown in the browser toolbar and about:addons"
+  },
+  "extDescription": {
+    "message": "Save the current tab to your LinkAce instance with one click, picking tags and lists, no bookmarks toolbar needed.",
+    "description": "Extension description shown in about:addons"
+  },
+  "actionTitle": {
+    "message": "Save to LinkAce",
+    "description": "Toolbar button tooltip"
+  },
+  "commandDescription": {
+    "message": "Save current tab to LinkAce",
+    "description": "Keyboard shortcut description in about:addons shortcuts page"
+  },
+  "optionsPageTitle": {
+    "message": "LinkAce Quick Save — Settings",
+    "description": "Options page <title>"
+  },
+  "optionsHeading": {
+    "message": "LinkAce Quick Save",
+    "description": "Options page H1"
+  },
+  "instanceUrlLabel": {
+    "message": "Your LinkAce instance URL",
+    "description": "Label for the instance URL field"
+  },
+  "instanceUrlPlaceholder": {
+    "message": "https://linkace.example.com",
+    "description": "Placeholder for the instance URL field"
+  },
+  "apiTokenLabel": {
+    "message": "API Token",
+    "description": "Label for the API token field"
+  },
+  "apiTokenPlaceholder": {
+    "message": "Generated in LinkAce → Profile → API Tokens",
+    "description": "Placeholder for the API token field"
+  },
+  "toggleTokenShow": {
+    "message": "Show",
+    "description": "Button label to reveal the API token"
+  },
+  "toggleTokenHide": {
+    "message": "Hide",
+    "description": "Button label to mask the API token"
+  },
+  "languageLabel": {
+    "message": "Language",
+    "description": "Label for the language selector"
+  },
+  "languageAuto": {
+    "message": "Match browser",
+    "description": "Language selector option that follows the browser's UI language"
+  },
+  "testConnectionBtn": {
+    "message": "Test connection",
+    "description": "Button to validate URL + token against the LinkAce API"
+  },
+  "saveBtn": {
+    "message": "Save",
+    "description": "Button to persist settings"
+  },
+  "statusTesting": {
+    "message": "Testing connection…",
+    "description": "Status message while testing the connection"
+  },
+  "statusTestSuccess": {
+    "message": "Connection successful.",
+    "description": "Status message on successful connection test"
+  },
+  "statusTestError": {
+    "message": "Connection failed: $ERROR$",
+    "description": "Status message on failed connection test",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaved": {
+    "message": "Settings saved.",
+    "description": "Status message after saving settings"
+  },
+  "footerNote": {
+    "message": "Your token never leaves your browser except to talk directly to your own LinkAce instance.",
+    "description": "Reassurance note in the options page footer"
+  },
+  "popupNotConfigured": {
+    "message": "Set up your LinkAce instance first.",
+    "description": "Popup message shown when instance URL / token are missing"
+  },
+  "popupOpenSettings": {
+    "message": "Open settings",
+    "description": "Popup button to open the options page"
+  },
+  "popupGrantAccess": {
+    "message": "Allow access to your instance",
+    "description": "Popup button to request the host permission for the configured instance"
+  },
+  "popupUrlLabel": {
+    "message": "URL",
+    "description": "Popup field label for the page URL"
+  },
+  "popupTitleLabel": {
+    "message": "Title",
+    "description": "Popup field label for the link title"
+  },
+  "popupDescriptionLabel": {
+    "message": "Description",
+    "description": "Popup field label for the optional description"
+  },
+  "popupTagsLabel": {
+    "message": "Tags",
+    "description": "Popup field label for tags"
+  },
+  "popupTagsPlaceholder": {
+    "message": "comma, separated, tags",
+    "description": "Popup placeholder for the tags field"
+  },
+  "popupListsLabel": {
+    "message": "Lists",
+    "description": "Popup field label for lists"
+  },
+  "popupListsPlaceholder": {
+    "message": "comma, separated, lists",
+    "description": "Popup placeholder for the lists field"
+  },
+  "popupSaveBtn": {
+    "message": "Save to LinkAce",
+    "description": "Popup save button"
+  },
+  "popupSaving": {
+    "message": "Saving…",
+    "description": "Popup status while saving"
+  },
+  "popupSaved": {
+    "message": "Saved!",
+    "description": "Popup status after a successful save"
+  },
+  "popupError": {
+    "message": "Error: $ERROR$",
+    "description": "Popup status on error",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupLoadingLists": {
+    "message": "Loading tags and lists…",
+    "description": "Popup status while fetching tags/lists"
+  }
+}

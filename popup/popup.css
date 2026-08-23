@@ -1,0 +1,144 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1b1b1b;
+  --bg: #ffffff;
+  --muted: #666;
+  --border: #d0d0d0;
+  --accent: #2563eb;
+  --warning-bg: #fff7ed;
+  --warning-border: #f59e0b;
+  --warning-fg: #7c2d12;
+  --info-bg: #eff6ff;
+  --info-border: #2563eb;
+  --info-fg: #1e3a8a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #eaeaea;
+    --bg: #1e1e1e;
+    --muted: #a0a0a0;
+    --border: #3a3a3a;
+    --warning-bg: #3a2a12;
+    --warning-border: #f59e0b;
+    --warning-fg: #fcd9a8;
+    --info-bg: #1c2b47;
+    --info-border: #60a5fa;
+    --info-fg: #bfdbfe;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 20rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+main {
+  padding: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  font: inherit;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  resize: vertical;
+}
+
+button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.25rem 0 1rem;
+  padding: 1.1rem 1rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+#notice-icon svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+#notice-text {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+#notice.notice-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning-fg);
+}
+
+#notice.notice-warning #notice-btn {
+  background: var(--warning-border);
+  border-color: var(--warning-border);
+}
+
+#notice.notice-info {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+  color: var(--info-fg);
+}
+
+#notice.notice-info #notice-btn {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+#status {
+  min-height: 1.1em;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+#status.status-success {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+#status.status-error {
+  color: #dc2626;
+  font-weight: 600;
+}

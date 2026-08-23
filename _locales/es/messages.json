@@ -1,0 +1,156 @@
+{
+  "extName": {
+    "message": "LinkAce Quick Save",
+    "description": "Nombre de la extensión mostrado en la barra de herramientas y about:addons"
+  },
+  "extDescription": {
+    "message": "Guarda la pestaña actual en tu instancia de LinkAce con un clic, eligiendo tags y listas, sin necesitar la barra de marcadores.",
+    "description": "Descripción de la extensión mostrada en about:addons"
+  },
+  "actionTitle": {
+    "message": "Guardar en LinkAce",
+    "description": "Tooltip del botón de la barra de herramientas"
+  },
+  "commandDescription": {
+    "message": "Guardar pestaña actual en LinkAce",
+    "description": "Descripción del atajo de teclado en about:addons"
+  },
+  "optionsPageTitle": {
+    "message": "LinkAce Quick Save — Configuración",
+    "description": "<title> de la página de opciones"
+  },
+  "optionsHeading": {
+    "message": "LinkAce Quick Save",
+    "description": "H1 de la página de opciones"
+  },
+  "instanceUrlLabel": {
+    "message": "URL de tu instancia de LinkAce",
+    "description": "Etiqueta del campo de URL de instancia"
+  },
+  "instanceUrlPlaceholder": {
+    "message": "https://linkace.midominio.com",
+    "description": "Placeholder del campo de URL de instancia"
+  },
+  "apiTokenLabel": {
+    "message": "Token de API",
+    "description": "Etiqueta del campo de token de API"
+  },
+  "apiTokenPlaceholder": {
+    "message": "Generado en LinkAce → Perfil → API Tokens",
+    "description": "Placeholder del campo de token de API"
+  },
+  "toggleTokenShow": {
+    "message": "Mostrar",
+    "description": "Botón para revelar el token de API"
+  },
+  "toggleTokenHide": {
+    "message": "Ocultar",
+    "description": "Botón para ocultar el token de API"
+  },
+  "languageLabel": {
+    "message": "Idioma",
+    "description": "Etiqueta del selector de idioma"
+  },
+  "languageAuto": {
+    "message": "Igual que el navegador",
+    "description": "Opción del selector de idioma que sigue el idioma del navegador"
+  },
+  "testConnectionBtn": {
+    "message": "Probar conexión",
+    "description": "Botón para validar URL + token contra la API de LinkAce"
+  },
+  "saveBtn": {
+    "message": "Guardar",
+    "description": "Botón para guardar la configuración"
+  },
+  "statusTesting": {
+    "message": "Probando conexión…",
+    "description": "Mensaje de estado mientras se prueba la conexión"
+  },
+  "statusTestSuccess": {
+    "message": "Conexión exitosa.",
+    "description": "Mensaje de estado tras una prueba de conexión exitosa"
+  },
+  "statusTestError": {
+    "message": "Conexión fallida: $ERROR$",
+    "description": "Mensaje de estado tras una prueba de conexión fallida",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSaved": {
+    "message": "Configuración guardada.",
+    "description": "Mensaje de estado tras guardar la configuración"
+  },
+  "footerNote": {
+    "message": "El token nunca sale de tu navegador salvo para hablar directamente con tu propia instancia de LinkAce.",
+    "description": "Nota de tranquilidad en el pie de la página de opciones"
+  },
+  "popupNotConfigured": {
+    "message": "Configura tu instancia de LinkAce primero.",
+    "description": "Mensaje del popup cuando falta la URL de instancia o el token"
+  },
+  "popupOpenSettings": {
+    "message": "Abrir ajustes",
+    "description": "Botón del popup para abrir la página de opciones"
+  },
+  "popupGrantAccess": {
+    "message": "Permitir acceso a tu instancia",
+    "description": "Botón del popup para solicitar el permiso de host de la instancia configurada"
+  },
+  "popupUrlLabel": {
+    "message": "URL",
+    "description": "Etiqueta del campo de URL en el popup"
+  },
+  "popupTitleLabel": {
+    "message": "Título",
+    "description": "Etiqueta del campo de título en el popup"
+  },
+  "popupDescriptionLabel": {
+    "message": "Descripción",
+    "description": "Etiqueta del campo de descripción opcional en el popup"
+  },
+  "popupTagsLabel": {
+    "message": "Tags",
+    "description": "Etiqueta del campo de tags en el popup"
+  },
+  "popupTagsPlaceholder": {
+    "message": "tags, separados, por, coma",
+    "description": "Placeholder del campo de tags"
+  },
+  "popupListsLabel": {
+    "message": "Listas",
+    "description": "Etiqueta del campo de listas en el popup"
+  },
+  "popupListsPlaceholder": {
+    "message": "listas, separadas, por, coma",
+    "description": "Placeholder del campo de listas"
+  },
+  "popupSaveBtn": {
+    "message": "Guardar en LinkAce",
+    "description": "Botón de guardar del popup"
+  },
+  "popupSaving": {
+    "message": "Guardando…",
+    "description": "Estado del popup mientras se guarda"
+  },
+  "popupSaved": {
+    "message": "¡Guardado!",
+    "description": "Estado del popup tras un guardado exitoso"
+  },
+  "popupError": {
+    "message": "Error: $ERROR$",
+    "description": "Estado del popup en caso de error",
+    "placeholders": {
+      "error": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupLoadingLists": {
+    "message": "Cargando tags y listas…",
+    "description": "Estado del popup mientras se cargan tags y listas"
+  }
+}
