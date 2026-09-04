@@ -10,8 +10,7 @@ lists without leaving the page, no bookmarks toolbar needed.
 
 ## Status
 
-Core save flow works end to end: popup, options, and REST API client are
-all in place. Not yet published — see [Roadmap](#roadmap).
+Available on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/linkace-quick-save/).
 
 ## Why an API token, not the bookmarklet flow?
 
@@ -60,9 +59,10 @@ plain HTTP is not supported.
 
 ## Installation
 
-**Coming soon on addons.mozilla.org** — the store link will go here once
-published. Trying it before then requires loading it as a temporary
-add-on; see [Development](#development).
+Install it from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/linkace-quick-save/).
+
+To try changes before they're published, load it as a temporary add-on
+instead; see [Development](#development).
 
 ## Configuration
 
@@ -96,9 +96,8 @@ network instance? See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ## Roadmap
 
+- [x] Publish to addons.mozilla.org
 - [ ] Background/service worker if needed for optional host permissions
-- [ ] Publish to addons.mozilla.org (add signing/submission steps to
-      Installation once this happens)
 
 ## Contributing
 
